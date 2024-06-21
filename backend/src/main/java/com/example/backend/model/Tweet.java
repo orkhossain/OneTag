@@ -4,8 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Tweet {
@@ -15,7 +16,7 @@ public class Tweet {
 
   private String author;
   private String message;
-  private LocalDateTime date;
+  private Long dateEpoch;
 
   // Getters and setters
   public Long getId() {
@@ -42,11 +43,39 @@ public class Tweet {
     this.message = message;
   }
 
-  public LocalDateTime getDate() {
-    return date;
+  public Long getDateEpoch() {
+    return dateEpoch;
   }
 
-  public void setDate(LocalDateTime date) {
-    this.date = date;
+  public void setDateEpoch(Long dateEpoch) {
+    this.dateEpoch = dateEpoch;
+  }
+
+  public String formatDateForResponse() {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        .withZone(ZoneId.systemDefault());
+    return formatter.format(Instant.ofEpochSecond(this.dateEpoch));
+  }
+
+  // public String getFormattedDate() {
+  // if (dateEpoch == null) {
+  // return "";
+  // }
+  // LocalDateTime date =
+  // LocalDateTime.ofInstant(Instant.ofEpochSecond(dateEpoch),
+  // ZoneId.systemDefault());
+  // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm - dd/MM/yyyy
+  // 'GMT'");
+  // return date.format(formatter);
+  // }
+
+  private String formattedDate;
+
+  public void setFormattedDate(String formattedDate) {
+    this.formattedDate = formattedDate;
+  }
+
+  public String getFormattedDate() {
+    return formattedDate;
   }
 }
