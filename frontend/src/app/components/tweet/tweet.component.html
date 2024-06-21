@@ -1,0 +1,21 @@
+<div>
+  <h2>New Tweet</h2>
+  <form (ngSubmit)="postNewTweet()">
+    <label>Author:</label>
+    <input type="text" [(ngModel)]="newTweet.author" name="author" required>
+    <br>
+    <label>Message:</label>
+    <textarea [(ngModel)]="newTweet.message" name="message" required></textarea>
+    <br>
+    <button type="submit" [disabled]="!newTweet.author || !newTweet.message">Post Tweet</button>
+  </form>
+
+  <h2>Tweets</h2>
+  <ul>
+    <li *ngFor="let tweet of tweets">
+      <strong>{{ tweet.author }}</strong>: {{ tweet.message }}
+      <br>
+      <small>{{ tweet.date | date:'medium' }}</small>
+    </li>
+  </ul>
+</div>
