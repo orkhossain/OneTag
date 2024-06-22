@@ -1,0 +1,37 @@
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.new-tweet-container {
+  margin-bottom: 20px;
+}
+
+.tweets-container {
+  margin-top: 20px;
+}
+
+.tweet-card {
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.tweet-author {
+  font-weight: bold;
+}
+
+.tweet-date {
+  color: gray;
+  font-size: 0.85rem;
+}

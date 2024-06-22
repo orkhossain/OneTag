@@ -1,0 +1,32 @@
+<div *ngIf="loading; else tweetsList">
+  <div class="tweet-card" *ngFor="let i of skeletonArray">
+    <div class="tweet-header">
+      <p-avatar icon="pi pi-user" shape="circle" [style]="{'background-color': '#E0E0E0'}"></p-avatar>
+      <div class="tweet-info">
+        <p-skeleton width="20vw" height="16px"></p-skeleton>
+      </div>
+    </div>
+    <div class="tweet-content">
+      <p-skeleton width="100%" height="20px"></p-skeleton>
+    </div>
+  </div>
+</div>
+
+<ng-template #tweetsList>
+  <p-virtualScroller [value]="tweets" scrollHeight="92svh" [itemSize]="100">
+    <ng-template pTemplate="item" let-tweet>
+      <div class="tweet-card">
+        <div class="tweet-header">
+          <p-avatar icon="pi pi-user" shape="circle" [style]="{'background-color': '#2196F3', 'color': '#ffffff'}"></p-avatar>
+          <div class="tweet-info">
+            <span class="tweet-author">{{tweet.author}}</span>
+            <small class="tweet-date">{{tweet.date | date:'medium'}}</small>
+          </div>
+        </div>
+        <div class="tweet-content">
+          {{tweet.message}}
+        </div>
+      </div>
+    </ng-template>
+  </p-virtualScroller>
+</ng-template>
